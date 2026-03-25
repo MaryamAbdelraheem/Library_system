@@ -3,8 +3,7 @@ public class HistoricalBook extends Book {
         super(title);
     }
     @Override
-    public void borrowBook(User user) {
-        System.out.println("Historical Book: "+super.getTitle() + " has been borrowed by " + user.getName() + ".");
-
+    protected void onBorrow(User user) {
+        System.out.println("Historical Book: " + getTitle() + " has been borrowed by " + user.getName() + ".");
     }
  }

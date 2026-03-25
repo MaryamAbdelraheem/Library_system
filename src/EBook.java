@@ -5,8 +5,7 @@ public class EBook extends Book{
     }
 
     @Override
-    public void borrowBook(User user) {
-        System.out.println( user.getName()+" borrowed the e-book: "+super.getTitle() );
-
+    protected void onBorrow(User user) {
+        System.out.println(user.getName() + " borrowed the e-book: " + getTitle());
     }
 }

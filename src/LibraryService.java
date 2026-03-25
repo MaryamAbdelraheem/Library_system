@@ -2,18 +2,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LibraryService {
-    private LibraryService instance;
-    private List<Book> books = new ArrayList<>();
+    private static LibraryService instance;
+    private List<BookInterface> books = new ArrayList<>();
 
-    LibraryService(){
-
+    private LibraryService() {
     }
-    public void addBook(Book book) {
+
+    public static LibraryService getInstance() {
+        if (instance == null) {
+            instance = new LibraryService();
+        }
+        return instance;
+    }
+
+    public void addBook(BookInterface book) {
         books.add(book);
     }
 
-    public Book findBook(String title) {
-        for (Book book : books) {
+    public BookInterface findBook(String title) {
+        for (BookInterface book : books) {
             if (book.getTitle().equalsIgnoreCase(title)) {
                 return book;
             }
@@ -21,8 +28,8 @@ public class LibraryService {
         return null;
     }
 
-    public void borrowBook(String title,User user) {
-        Book book = findBook(title);
+    public void borrowBook(String title, User user) {
+        BookInterface book = findBook(title);
         if (book != null) {
             book.borrowBook(user);
         } else {
@@ -31,7 +38,7 @@ public class LibraryService {
     }
 
     public void returnBook(String title) {
-        Book book = findBook(title);
+        BookInterface book = findBook(title);
         if (book != null) {
             book.returnBook();
         } else {

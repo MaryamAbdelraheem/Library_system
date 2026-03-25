@@ -1,4 +1,5 @@
-public class Book implements BookInterface{
+
+public class Book implements BookInterface {
     private String title;
     private boolean isAvailable;
 
@@ -7,25 +8,37 @@ public class Book implements BookInterface{
         this.isAvailable = true;
     }
 
+    @Override
     public boolean isAvailable() {
         return isAvailable;
     }
+
+    @Override
     public String getTitle() {
         return title;
     }
+
+    @Override
     public void borrowBook(User user) {
         if (isAvailable) {
             isAvailable = false;
-            System.out.println(user.getName()+" "+title + " has been borrowed.");
+            onBorrow(user);
         } else {
             System.out.println(title + " is not available.");
         }
     }
 
+    @Override
     public void returnBook() {
         isAvailable = true;
-        System.out.println(title + " has been returned.");
+        onReturn();
     }
 
+    protected void onBorrow(User user) {
+        System.out.println(user.getName() + " " + title + " has been borrowed.");
+    }
 
+    protected void onReturn() {
+        System.out.println(title + " has been returned.");
+    }
 }

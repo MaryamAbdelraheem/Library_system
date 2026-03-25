@@ -5,8 +5,7 @@ public class PhysicalBook extends Book{
     }
 
     @Override
-    public void borrowBook(User user) {
-        System.out.println("Physical Book: "+super.getTitle() + " has been borrowed by " + user.getName() + ".");
-
+    protected void onBorrow(User user) {
+        System.out.println("Physical Book: " + getTitle() + " has been borrowed by " + user.getName() + ".");
     }
 }
